@@ -256,7 +256,7 @@ const WORKS=[{"title": "A Single Neuron Is Sufficient to Bypass Safety Alignment
 const UNITS=["Neuron (steer)", "Neuron (clamp/ablate)", "Trained neuron(s)", "Neuron set", "Weight/scalar", "SAE latent", "Direction"];
 (function(){
 var view=document.getElementById('view'),sort=document.getElementById('sort'),unit=document.getElementById('unit'),tb=document.getElementById('tb'),th=document.getElementById('thead'),count=document.getElementById('count');
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&','<':'<','>':'>','"':'"'}[c];});}
+var A=String.fromCharCode(38);function esc(s){return String(s).replace(/[&<>"]/g,function(c){return A+{'&':'amp','<':'lt','>':'gt','"':'quot'}[c]+';';});}
 function fmt(s){return esc(s).replace(/`([^`]+)`/g,'<code>$1</code>');}
 var opts=[['all','All units ('+WORKS.length+')']].concat(UNITS.map(function(u){return[u,u+' ('+WORKS.filter(function(w){return w.unit===u;}).length+')'];}));
 unit.innerHTML=opts.map(function(o){return '<option value="'+esc(o[0])+'">'+esc(o[1])+'</option>';}).join('');
